@@ -5,6 +5,7 @@ import { Form, Button } from 'react-bootstrap';
 
 function Login() {
   const [details, setDetails] = useState({
+    name: '',
     username: '',
     password: '',
   });

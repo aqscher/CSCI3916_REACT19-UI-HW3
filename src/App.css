@@ -83,6 +83,32 @@
   object-fit: contain; /* Ensures the image scales to fit without cropping */
 }
 
+/* Movie list grid */
+.movie-list-container {
+  background-color: #ffffff;
+  min-height: 100vh;
+  padding-bottom: 2rem;
+}
+
+.movie-card {
+  border: 1px solid #333;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.movie-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 20px rgba(0, 123, 255, 0.3);
+}
+
+.movie-card-img {
+  height: 300px;
+  object-fit: cover;
+}
+
+.movie-card a {
+  text-decoration: none;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

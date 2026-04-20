@@ -50,9 +50,35 @@ export function fetchMovie(movieId) {
     }
 }
 
-export function fetchMovies() {
+export function submitReview(movieId, review) {
     return dispatch => {
-        return fetch(`${env.REACT_APP_API_URL}/movies?reviews=true`, {
+        return fetch(`${env.REACT_APP_API_URL}/reviews/${movieId}`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': localStorage.getItem('token')
+            },
+            body: JSON.stringify(review),
+            mode: 'cors'
+        }).then((response) => {
+            if (!response.ok) {
+                throw Error(response.statusText);
+            }
+            return response.json();
+        }).then(() => {
+            return dispatch(fetchMovie(movieId));
+        }).catch((e) => console.log(e));
+    }
+}
+
+export function fetchMovies(searchQuery) {
+    return dispatch => {
+        let url = `${env.REACT_APP_API_URL}/movies?reviews=true`;
+        if (searchQuery) {
+            url += `&q=${encodeURIComponent(searchQuery)}`;
+        }
+        return fetch(url, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',

@@ -20,12 +20,9 @@ function MovieHeader() {
                 <Navbar.Brand as={NavLink} to="/">Movie App</Navbar.Brand> 
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="ml-auto">
+                <Nav className="me-auto">
                     <Nav.Link as={NavLink} to="/movielist" disabled={!loggedIn}> 
-                        Movie List
-                    </Nav.Link>
-                    <Nav.Link as={NavLink} to={'/movie/' + (selectedMovie? selectedMovie._id: '')} disabled={!loggedIn}>
-                        Movie Detail
+                        Home
                     </Nav.Link>
                     <Nav.Link as={NavLink} to="/signin"> 
                         {loggedIn? (
@@ -37,6 +34,11 @@ function MovieHeader() {
                         )}
                     </Nav.Link>
                 </Nav>
+                {loggedIn && (
+                    <Navbar.Text className="mx-auto">
+                        Logged in as: {username}
+                    </Navbar.Text>
+                )}
                 </Navbar.Collapse>
             </Navbar>
         </div>
